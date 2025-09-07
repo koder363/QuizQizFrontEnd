@@ -11,9 +11,11 @@ import {
   ChevronDown,
   ChevronUp,
   Menu,
+  Brain,
 } from "lucide-react";
 import axios from "../api/axios";
 import { toast } from "react-toastify";
+import AIQuizGenerator from "../features/ai/AIQuizGenerator";
 
 const AdminPanel = () => {
   const [title, setTitle] = useState("");
@@ -347,6 +349,17 @@ const AdminPanel = () => {
             >
               <BarChart3 className="w-4 h-4 inline mr-2" />
               <span className="text-sm sm:text-base">Manage Quizzes</span>
+            </button>
+            <button
+              onClick={() => setActiveTab("ai")}
+              className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl font-medium transition-all duration-300 ${
+                activeTab === "ai"
+                  ? "bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg"
+                  : "text-slate-600 hover:bg-white/50"
+              }`}
+            >
+              <Brain className="w-4 h-4 inline mr-2" />
+              <span className="text-sm sm:text-base">AI Generator</span>
             </button>
           </div>
         </div>
@@ -704,6 +717,22 @@ const AdminPanel = () => {
                 </button>
               </div>
             )}
+          </div>
+        )}
+
+        {/* AI Quiz Generator Tab */}
+        {activeTab === "ai" && (
+          <div className="space-y-6">
+            <div className="flex items-center mb-6">
+              <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-2 rounded-lg mr-3">
+                <Brain className="w-5 h-5 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-800">
+                AI Quiz Generator
+              </h2>
+            </div>
+
+            <AIQuizGenerator onQuizGenerated={fetchQuizzes} />
           </div>
         )}
       </div>

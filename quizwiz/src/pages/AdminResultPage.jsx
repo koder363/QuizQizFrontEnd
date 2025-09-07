@@ -1,7 +1,7 @@
 // src/pages/AdminResultPage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../api/axios";
 
 export default function AdminResultPage() {
   const { quizId, userId } = useParams();
@@ -15,14 +15,14 @@ export default function AdminResultPage() {
     setLoading(true);
 
     if (quizId) {
-      axios
-        .get(`/api/results/quiz/${quizId}`)
+      axiosInstance
+        .get(`/results/quiz/${quizId}`)
         .then((res) => setResults(res.data))
         .catch(console.error)
         .finally(() => setLoading(false));
     } else if (userId) {
-      axios
-        .get(`/api/results/user/${userId}`)
+      axiosInstance
+        .get(`/results/user/${userId}`)
         .then((res) => setResults(res.data))
         .catch(console.error)
         .finally(() => setLoading(false));
@@ -35,8 +35,8 @@ export default function AdminResultPage() {
   const handleSearch = () => {
     if (!searchUserId) return;
     setLoading(true);
-    axios
-      .get(`/api/results/user/${searchUserId}`)
+    axiosInstance
+      .get(`/results/user/${searchUserId}`)
       .then((res) => setResults(res.data))
       .catch(console.error)
       .finally(() => setLoading(false));
@@ -46,8 +46,8 @@ export default function AdminResultPage() {
     setSearchUserId("");
     setLoading(true);
     if (quizId) {
-      axios
-        .get(`/api/results/quiz/${quizId}`)
+      axiosInstance
+        .get(`/results/quiz/${quizId}`)
         .then((res) => setResults(res.data))
         .catch(console.error)
         .finally(() => setLoading(false));

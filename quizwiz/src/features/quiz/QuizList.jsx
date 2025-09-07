@@ -10,6 +10,9 @@ import {
   FaChartBar,
   FaDownload,
   FaSignOutAlt,
+  FaBrain,
+  FaLightbulb,
+  FaBullseye,
 } from "react-icons/fa";
 import { CSSTransition } from "react-transition-group";
 import {
@@ -122,7 +125,7 @@ const QuizList = () => {
       toast.success("Logged out successfully");
       navigate("/login");
     } catch (err) {
-      console.error("Logout failed", err);
+      // console.error("Logout failed", err);
       toast.error("Logout failed");
     }
   };
@@ -161,6 +164,22 @@ const QuizList = () => {
             >
               <FaChartBar />
               <span>My Results</span>
+            </button>
+
+            <button
+              onClick={() => navigate("/ai-analytics")}
+              className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:scale-105 text-white px-5 py-3 rounded-full shadow-lg transition-all"
+            >
+              <FaBrain />
+              <span>AI Analytics</span>
+            </button>
+
+            <button
+              onClick={() => navigate("/ai-practice")}
+              className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 hover:scale-105 text-white px-5 py-3 rounded-full shadow-lg transition-all"
+            >
+              <FaBullseye />
+              <span>AI Practice</span>
             </button>
 
             <button
@@ -212,9 +231,7 @@ const QuizList = () => {
                       {summary?.extract}
                     </p>
                     <button
-                      onClick={() =>
-                        navigate(`/quiz/${quiz.id}/instructions`)
-                      }
+                      onClick={() => navigate(`/quiz/${quiz.id}/instructions`)}
                       className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-2 rounded-lg hover:scale-105 transition-all"
                     >
                       Start Quiz
@@ -243,6 +260,20 @@ const QuizList = () => {
           >
             <FaChartBar className="text-xl" />
             Results
+          </button>
+          <button
+            onClick={() => navigate("/ai-analytics")}
+            className="flex flex-col items-center text-sm text-purple-600"
+          >
+            <FaBrain className="text-xl" />
+            Analytics
+          </button>
+          <button
+            onClick={() => navigate("/ai-practice")}
+            className="flex flex-col items-center text-sm text-orange-600"
+          >
+            <FaBullseye className="text-xl" />
+            Practice
           </button>
           <button
             onClick={handleLogout}
